@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="../resources/css/default.css"/>
+        <h:outputStylesheet name="../resources/css/cssLayout.css"/>
+
+
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+
+        <link href="../resources/css/styles.css" rel="stylesheet" type="text/css"/>
+        <title>Agrgando Cliente</title>
+    </h:head>
+
+    <script>
+        function valida(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla == 8) {
+                return true;
+            }
+
+            // Patron de entrada, en este caso solo acepta numeros
+            patron = /[0-9]/;
+            tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
+    </script>
+
+
+    <h:body style="width:60%; margin: 0 auto;  background-image: url(../resources/img/banner.jpg)"   >
+
+
+        <h:form   id='form1' >
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <p:panel id="panel" header="Agregar Usuario" style="margin-bottom:10px;background-color: #EBF7F7;">
+                <p:fieldset legend="Datos Personales">
+                    <h:panelGrid columns="3" cellpadding="4" id="pgUsuario">
+
+                        <p:outputLabel for="Id_Usuario" value="RUT:" />
+                        <p:inputText onkeypress="return valida(event)"   id="Id_Usuario" maxlength="8" value="#{ClienteManagedBean.currentCliente.cliente_id}" required="true" validatorMessage="Ingrese su rut sin DV" >
+                            <f:validateLength minimum="7"/> <!-- 7 PARA LOS RUT MENORES A 10 MILLONES Y 8 PARA LOS MAYORES A 10 MILLONES-->
+                        </p:inputText>
+                        <p:message for="Id_Usuario"/>
+
+
+                        <p:outputLabel for="email" value="Email" />
+                        <p:inputText  maxlength="50" value="#{ClienteManagedBean.currentCliente.email}" id="email" required="true" validatorMessage="Email incorrecto">
+                            <f:validateLength minimum="5" maximum="50" />
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>
+                        <p:message for="email"/>
+
+
+
+
+                        <p:outputLabel for="primer_Nombre" value="Primer Nombre" />
+                        <p:inputText id="primer_Nombre" maxlength="30" value="#{ClienteManagedBean.currentCliente.p_nombre}" required="true"/>
+                        <p:message for="primer_Nombre"/>
+
+
+                        <p:outputLabel for="segundo_Nombre" value="Segundo Nombre" />
+                        <p:inputText  id="segundo_Nombre" maxlength="30" value="#{ClienteManagedBean.currentCliente.s_nombre}" required="true" />
+                        <p:message for="segundo_Nombre"/>
+
+
+
+                        <p:outputLabel for="apellido_Paterno" value="Apellido Paterno" />
+                        <p:inputText id="apellido_Paterno" maxlength="30" value="#{ClienteManagedBean.currentCliente.p_apellido}" required="true" />
+                        <p:message for="apellido_Paterno"/>
+
+
+
+                        <p:outputLabel for="apellido_Materno" value="Apellido Materno" />
+                        <p:inputText id="apellido_Materno" maxlength="30" value="#{ClienteManagedBean.currentCliente.s_apellido}" required="true" />
+                        <p:message for="apellido_Materno"/>
+
+
+
+                        <p:outputLabel for="sexo" value="Sexo"></p:outputLabel>
+                        <p:selectOneRadio id="sexo" value="#{ClienteManagedBean.currentCliente.sexo}" required="true">
+                            <f:selectItem  itemValue="M" itemLabel="Masculino" />
+                            <f:selectItem  itemValue="F" itemLabel="Femenino" />
+                        </p:selectOneRadio>
+                        <p:message for="sexo" />
+
+                        <p:outputLabel for="Telefono" value="Telefono" />
+                        <p:inputText  onkeypress="return valida(event)"  maxlength="9" id="Telefono"  value="#{ClienteManagedBean.currentCliente.telefono}" required="true" 
+                                        validatorMessage="Formato incorrecto">
+                            <f:validateLength minimum="9" maximum="9" />
+                        </p:inputText>
+                        <p:message for="Telefono" />                        
+
+
+                    </h:panelGrid>
+                </p:fieldset>
+
+                <!--                    <p:separator/>-->
+
+                <p:fieldset legend="Datos Cuenta">
+                    <h:panelGrid columns="3" cellpadding="7" id="pgCuenta">
+
+                        <p:outputLabel for="usuario" value="Usuario" />
+                        <p:inputText id="usuario" maxlength="20" value="#{ClienteManagedBean.currentCliente.user}" required="true" label="usuario">
+                            <f:validateLength minimum="1"/>
+                        </p:inputText>
+                        <p:message for="usuario"/>
+
+
+                        <p:outputLabel for="password" value="Password" />
+                        <p:password validatorMessage="Las claves no coinciden" feedback="true" promptLabel="Ingrese Clave" match="clave2" id="password" maxlength="20" value="#{ClienteManagedBean.currentCliente.pass}" required="true" label="password">
+                            <f:validateLength minimum="1"/>
+                        </p:password>
+                        <p:message for="password" />
+
+
+                        <p:outputLabel for="clave2" value="Repita Password" />
+                        <p:password  id="clave2" maxlength="20"  required="true" label="clave2">
+                            <f:validateLength minimum="1"/>
+                        </p:password>
+                        <p:message for="clave2" />
+
+                    </h:panelGrid>
+                </p:fieldset>
+
+                <!--                    <p:separator/>-->
+
+                <p:fieldset legend="Datos Vehiculo">
+                    <h:panelGrid columns="3" cellpadding="7" id="pgVehiculo">
+
+                        <p:outputLabel for="patente" value="Patente" />
+                        <p:inputText id="patente" maxlength="6" value="#{ClienteManagedBean.currentCliente.patente}" required="true"
+                                     validatorMessage="Patente no valida">
+                            <f:validateLength minimum="6"/>
+
+                        </p:inputText>
+                        <p:message for="patente" />
+
+
+                    </h:panelGrid>
+                </p:fieldset>
+
+                <p:fieldset legend="Datos Tarjeta">
+                    <h:panelGrid columns="3" cellpadding="5" id="pgTarjeta">
+
+                        <p:outputLabel for="metodoPago" value="Metodo Pago"></p:outputLabel>
+                        <p:selectOneRadio id="metodoPago" value="#{ClienteManagedBean.currentCliente.metodoPago}" required="true">
+                            <f:selectItem  itemValue="1" itemLabel="Visa" />
+                            <f:selectItem  itemValue="2" itemLabel="Master-Card" />
+                        </p:selectOneRadio>
+                        <p:message for="metodoPago" />
+
+                        <p:outputLabel for="numTarjeta" value="Numero Tarjeta" />
+                        <p:inputText id="numTarjeta" maxlength="16"  value="#{ClienteManagedBean.currentCliente.tarj_num}" required="true"
+                                     validatorMessage="Numero tarjeta Invalido" >
+                            <f:validateLength minimum="16"/>
+                        </p:inputText>
+                        <p:message for="numTarjeta" />
+
+                        <p:outputLabel  value="Fecha Expiracion Tarjeta" />
+                        <p:selectOneMenu id="mes" value="#{ClienteManagedBean.mes}" required="true">
+                            <f:selectItem itemValue="01" itemLabel="Enero"/>
+                            <f:selectItem itemValue="02" itemLabel="Febrero"/>
+                            <f:selectItem itemValue="03" itemLabel="Marzo"/>
+                            <f:selectItem itemValue="04" itemLabel="Abril"/>
+                            <f:selectItem itemValue="05" itemLabel="Mayo"/>
+                            <f:selectItem itemValue="06" itemLabel="Junio"/>
+                            <f:selectItem itemValue="07" itemLabel="Julio"/>
+                            <f:selectItem itemValue="08" itemLabel="Agosto"/>
+                            <f:selectItem itemValue="09" itemLabel="Septiembre"/>
+                            <f:selectItem itemValue="10" itemLabel="Octubre"/>
+                            <f:selectItem itemValue="11" itemLabel="Noviembre"/>
+                            <f:selectItem itemValue="12" itemLabel="Diciembre"/>
+                        </p:selectOneMenu>
+                       
+
+                        <p:selectOneMenu id="anio" value="#{ClienteManagedBean.anio}" required="true">
+                            <f:selectItem itemValue="2019" itemLabel="2019"/>
+                            <f:selectItem itemValue="2020" itemLabel="2020"/>
+                            <f:selectItem itemValue="2021" itemLabel="2021"/>
+                            <f:selectItem itemValue="2022" itemLabel="2022"/>
+                            <f:selectItem itemValue="2023" itemLabel="2023"/>
+                            <f:selectItem itemValue="2024" itemLabel="2024"/>
+                            <f:selectItem itemValue="2025" itemLabel="2025"/>
+                            <f:selectItem itemValue="2026" itemLabel="2026"/>
+                            <f:selectItem itemValue="2027" itemLabel="2027"/>
+
+                        </p:selectOneMenu>
+                        
+
+                        <p:outputLabel for="numSegTarjeta" value="Numero Seguridad Tarjeta" />
+                        <p:inputText id="numSegTarjeta" maxlength="3" value="#{ClienteManagedBean.currentCliente.tarj_num_seg}" required="true"
+                                     validatorMessage="Numero seguridad tarjeta Invalido" >
+                            <f:validateLength minimum="3"/>
+                        </p:inputText>
+                        <p:message for="numSegTarjeta" />
+                    </h:panelGrid>
+                </p:fieldset>
+                <p:commandButton style="margin-top: 15px;"  action="#{ClienteManagedBean.ingresarCliente()}" value="Agregar" update="pgUsuario, pgCuenta, pgVehiculo,pgTarjeta"  ></p:commandButton>
+                <p:commandButton style="margin-top: 15px;" value="Volver" action="#{ClienteManagedBean.index()}" ajax="true"/>                  
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+
+
+</html>

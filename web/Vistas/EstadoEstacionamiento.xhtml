@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+ 
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link href="resources/css/styles.css" rel="stylesheet" type="text/css"/>
+        <h:outputScript library="js" name="global.js"/>
+
+
+    </h:head>
+
+    <body>
+
+        <ui:composition template="./Master.xhtml">
+
+            <ui:define name="content">
+
+
+                <h:body>
+                    <h:form>
+
+                        <p:panel header="Cambiar Estado Estacionamiento" style="width:60%; margin: 0 auto;background-color: #EBF7F7;">
+                            <p:fieldset legend="Datos Estacionamiento">
+                            <h:panelGrid id="panel1" columns="2" cellpadding="5">
+
+                                <h:outputLabel>Calle</h:outputLabel>
+                                <h:outputLabel value="#{direccionManagedBean.currentDireccion.dir_calle}"/>
+
+
+                                <h:outputLabel>Numero</h:outputLabel>
+                                <h:outputLabel value="#{direccionManagedBean.currentDireccion.numeracion}"/>
+
+                                <h:outputLabel>Comuna</h:outputLabel>
+                                <h:outputLabel value="#{direccionManagedBean.currentDireccion.comuna}"/>
+
+                                <h:outputLabel>Valor hora</h:outputLabel>
+                                <h:outputLabel value="#{direccionManagedBean.currentDireccion.valorHora}"/>
+                                
+                                 <h:outputLabel>Estado Actual</h:outputLabel>
+                                 <h:outputLabel value="#{direccionManagedBean.currentDireccion.EStadoDesc}"/>
+
+
+                            </h:panelGrid>
+                                </p:fieldset>
+                            <!--                            <p:separator />-->
+
+                            <p:commandButton class="btn btn-success" style="margin-top: 15px" value="Cambia estado" action="#{direccionManagedBean.cambiaEstadoEst()}" update="panel1" />
+                      
+                            <p:spacer width="10"/>
+
+                        </p:panel>
+                    </h:form>
+                </h:body>
+
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

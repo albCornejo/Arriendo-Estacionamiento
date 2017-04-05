@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <managed-bean>
+        <managed-bean-name>PortafolioManagedBean</managed-bean-name>
+        <managed-bean-class>PortafolioEST.Managed.EstadoCuentaManagedBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+        
+    <managed-bean>
+        <managed-bean-name>ClienteManagedBean</managed-bean-name>
+        <managed-bean-class>PortafolioEST.Managed.ClienteManagedBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>CuentaManagedBean</managed-bean-name>
+        <managed-bean-class>PortafolioEST.Managed.CuentaManagedBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>AddMarkersView</managed-bean-name>
+        <managed-bean-class>PortafolioEST.Managed.AddMarkersView</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>GeocodeView</managed-bean-name>
+        <managed-bean-class>PortafolioEST.Managed.GeocodeView</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+        <managed-bean>
+        <managed-bean-name>MakersManagedBean</managed-bean-name>
+        <managed-bean-class>PortafolioEST.Managed.MakersManagedBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+
+
+
+    <!--en uso-->
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>formModificarUsuario</from-outcome>
+            <to-view-id>/Vistas/Usuario/EditarUsuario.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>UsuarioCorrecto</from-outcome>
+            <to-view-id>/Vistas/Master.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>cerrar</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+        
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>BuscaEst</from-outcome>
+            <to-view-id>/Vistas/AgregaEst.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>editaUsu</from-outcome>
+            <to-view-id>/Vistas/Usuario/ListarUsuarios.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>modificarClienteFinal</from-outcome>
+            <to-view-id>/Vistas/EditarCliente.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>modificaEstadoEst</from-outcome>
+            <to-view-id>/Vistas/EstadoEstacionamiento.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+        
+        
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>cancelar</from-outcome>
+            <to-view-id>/Vistas/Master.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+   
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>listaTarjeta</from-outcome>
+            <to-view-id>/Vistas/cambiaTarjeta.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>cambiaTarjetaForm</from-outcome>
+            <to-view-id>/Vistas/IngresoTarjeta.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>BuscarEstacionamiento</from-outcome>
+            <to-view-id>/Vistas/ArriendoEstacionamiento.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+        <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>registro</from-outcome>
+            <to-view-id>/Vistas/agregaCliente.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>case1</from-outcome>
+            <to-view-id>/*</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/Vistas/agregaCliente.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>vuelveIndex</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

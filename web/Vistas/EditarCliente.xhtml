@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:head>
+        <title>Editar Perfil</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link href="resources/css/styles.css" rel="stylesheet" type="text/css"/>
+        <h:outputScript library="js" name="global.js"/>
+
+
+    </h:head>
+
+    <body style="width:784px; margin: 0 auto; border: 1px solid #000000 ;">
+
+        <ui:composition template="./Master.xhtml">
+
+            <ui:define name="content"  >
+                <h:body style="width:784px; margin: 0 auto; ">
+                    <h:form id="form"  style="width:60%; margin: 0 auto;text-align: center;  ">
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        <p:panel id="panel" header="Editar Usuario" style="margin-bottom:10px;background-color: #EBF7F7;">
+                            <p:fieldset legend="Datos Personales">
+                                <h:panelGrid columns="3" cellpadding="7" >
+
+                                    <p:outputLabel for="Id_Usuario" value="Id.Usuario:" />
+                                    <p:inputText disabled="true" id="Id_Usuario" maxlength="8" value="#{ClienteManagedBean.currentCliente.cliente_id}" required="true" validatorMessage="Porfavor ingrese su rut sin digito verificador" onkeydown="return onlynumWithoutPoint(event)">
+                                        <f:validateLength minimum="7"/> <!-- 7 PARA LOS RUT MENORES A 10 MILLONES Y 8 PARA LOS MAYORES A 10 MILLONES-->
+                                    </p:inputText>
+                                    <p:message for="Id_Usuario"/>
+
+                                    <p:outputLabel for="email" value="Email" />
+                                    <p:inputText maxlength="50" value="#{ClienteManagedBean.currentCliente.email}" id="email" required="true" validatorMessage="Email incorrecto">
+                                        <f:validateLength minimum="5" maximum="50" />
+                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:inputText>
+                                    <p:message for="email"/>
+
+                                    <p:outputLabel for="primer_Nombre" value="Primer Nombre" />
+                                    <p:inputText id="primer_Nombre" maxlength="30" value="#{ClienteManagedBean.currentCliente.p_nombre}" required="true"/>
+                                    <p:message for="primer_Nombre"/>
+
+                                    <p:outputLabel for="segundo_Nombre" value="Segundo Nombre" />
+                                    <p:inputText id="segundo_Nombre" maxlength="30" value="#{ClienteManagedBean.currentCliente.s_nombre}" required="true" />
+                                    <p:message for="segundo_Nombre"/>
+
+                                    <p:outputLabel for="apellido_Paterno" value="Apellido Paterno" />
+                                    <p:inputText id="apellido_Paterno" maxlength="30" value="#{ClienteManagedBean.currentCliente.p_apellido}" required="true" />
+                                    <p:message for="apellido_Paterno"/>
+
+                                    <p:outputLabel for="apellido_Materno" value="Apellido Materno" />
+                                    <p:inputText id="apellido_Materno" maxlength="30" value="#{ClienteManagedBean.currentCliente.s_apellido}" required="true" />
+                                    <p:message for="apellido_Materno"/>
+
+                                    <p:outputLabel for="sexo" value="Sexo"></p:outputLabel>
+                                    <p:selectOneRadio id="sexo" value="#{ClienteManagedBean.currentCliente.sexo}" required="true">
+                                        <f:selectItem  itemValue="M" itemLabel="Masculino" />
+                                        <f:selectItem  itemValue="F" itemLabel="Femenino" />
+                                    </p:selectOneRadio>
+                                    <p:message for="sexo" />
+
+                                    <p:outputLabel for="Telefono" value="Telefono" />
+                                    <p:inputText id="Telefono" maxlength="10" value="#{ClienteManagedBean.currentCliente.telefono}" 
+                                                 required="true" onkeydown="return onlynumWithoutPoint(event)" 
+                                                 validatorMessage="Formato de telefono incorrecto">
+                                        <f:validateLength minimum="9" maximum="10" />
+                                    </p:inputText>
+                                    <p:message for="Telefono" />                        
+
+
+                                </h:panelGrid>
+                            </p:fieldset>
+
+                            <!--                        <p:separator/>-->
+
+                            <p:fieldset legend="Datos Cuenta">
+                                <h:panelGrid columns="3" cellpadding="7">
+
+                                    <p:outputLabel for="usuario" value="Usuario" />
+                                    <p:inputText disabled="true" id="usuario" maxlength="20" value="#{ClienteManagedBean.currentCliente.user}" required="true" label="usuario">
+                                        <f:validateLength minimum="1"/>
+                                    </p:inputText>
+                                    <p:message for="usuario"/>
+
+
+                                    <p:outputLabel for="password" value="Password" />
+                                    <p:inputText id="password" maxlength="20" value="#{ClienteManagedBean.currentCliente.pass}" required="true" label="password" >
+                                        <f:validateLength minimum="1"/>
+                                    </p:inputText>
+                                    <p:message for="password" />
+
+                                </h:panelGrid>
+                            </p:fieldset>
+<!--                            <p:separator/>-->
+
+<p:commandButton style="margin-top: 15px;"  action="#{ClienteManagedBean.guardarModificar()}" value="Modificar" update="panel" ></p:commandButton>
+                            <p:commandButton style="margin-top: 15px;"  action="cancelar" value="Cancelar" update="panel" ></p:commandButton>
+
+                        </p:panel>
+                    </h:form>
+
+                </h:body>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

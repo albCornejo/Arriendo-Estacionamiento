@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Master.xhtml">
+
+            <ui:define name="content">
+                <div class="ui-g" >
+
+                    <p:panel header="Arriendo Estacionamiento" style="background-color: #68B0AB;width: 95%; margin: 0 auto; text-align: center; ">
+                        <div class="ui-g-12 ui-md-6 ui-lg-7" id="div1" >
+
+                            <h:form id="form2">
+                                <p:panel  style="margin: 0 auto;background-color: #EBF7F7;">
+                                    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBilIoHGvqkCYCFz6lCEyCWavLULxh6aWw"
+                                    type="text/javascript"></script> 
+                                    <p:gmap id='gmap' center="-33.5050018,-70.60673209999999" zoom="10" type="ROADMAP" style="width:100%;height:500px;" model="#{arriendoManagedBean.simpleModel}" >
+                                        <p:ajax event="overlaySelect" listener="#{arriendoManagedBean.onMarkerSelect}" update="form form:btnArrendar" />  
+                                    </p:gmap>
+                                </p:panel>
+                            </h:form>
+                        </div>
+                        <div class="ui-g-12 ui-lg-5">
+
+                            <p:panel   style="margin-bottom:10px;height:500px;margin: 0 auto;background-color: #EBF7F7;">
+                                <h:form id="form"  >
+                                    <p:fieldset legend="Datos Estacionamiento">
+                                        <h:panelGrid columns="2" cellpadding="5">
+
+                                            <h:outputLabel>Valor Hora</h:outputLabel>
+                                            <h:outputLabel value="#{arriendoManagedBean.currentMarca.VALOR_HORA}"/>
+
+                                            <h:outputLabel>Calle</h:outputLabel>
+                                            <h:outputLabel value="#{arriendoManagedBean.currentMarca.DIR_CALLE}"/>
+
+                                            <h:outputLabel>Numero</h:outputLabel>
+                                            <h:outputLabel value="#{arriendoManagedBean.currentMarca.NUMERO}"/>
+
+                                            <h:outputLabel>Comuna</h:outputLabel>
+                                            <h:outputLabel value="#{arriendoManagedBean.currentMarca.COMUNA_NOMBRE}"/>
+
+                                            <h:outputLabel>Provincia</h:outputLabel>
+                                            <h:outputLabel value="#{arriendoManagedBean.currentMarca.PROVINCIA_NOMBRE}"/>
+
+                                        </h:panelGrid>
+
+                                        <p:separator/>
+
+                                        <h:panelGrid columns="2" >
+
+                                            <p:outputLabel  value="Señale cantidad de horas" />
+                                            <p:selectOneMenu value="#{arriendoManagedBean.cantHoras}" required="true">
+                                                <f:selectItem itemValue="" itemLabel="Seleccione Numero Horas" noSelectionOption="true"/>
+                                                <f:selectItem itemValue="1" itemLabel="1 hora"/>
+                                                <f:selectItem itemValue="2" itemLabel="2 horas"/>
+                                                <f:selectItem itemValue="3" itemLabel="3 horas"/>
+                                                <f:selectItem itemValue="4" itemLabel="4 horas"/>
+                                                <f:selectItem itemValue="5" itemLabel="5 horas"/>
+                                                <f:selectItem itemValue="6" itemLabel="6 horas"/>
+                                                <f:selectItem itemValue="7" itemLabel="7 horas"/>
+                                                <f:selectItem itemValue="8" itemLabel="8 horas"/>
+                                                <f:selectItem itemValue="9" itemLabel="9 horas"/>
+                                                <f:selectItem itemValue="10" itemLabel="10 horas"/>
+                                            </p:selectOneMenu>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="3" id="total" >
+
+                                            <p:commandButton  value="Calcular"   action="#{arriendoManagedBean.calculoTotal}" update="total" />
+
+                                            <h:outputLabel>Toltal Arriendo: </h:outputLabel>
+                                            <h:outputLabel value="#{arriendoManagedBean.total}"/>
+<p:commandButton id="btnArrendar" rendered="#{arriendoManagedBean.currentMarca.idMarcador ne 0}" onclick="PF('dlg3').show();"  action="#{arriendoManagedBean.ingresarEstacionamiento()}" value="Arrendar" />
+                                        </h:panelGrid>
+                                        
+                                    </p:fieldset>
+                                </h:form>
+
+                                <!-- modal validacion -->
+                                <p:dialog  widgetVar="dlg3" showEffect="explode" hideEffect="bounce"  closeOnEscape="true" closable="false" >
+                                    <h:form id="form5">
+                                        <p:messages  id="messages" showDetail="true"  autoUpdate="true" />
+
+                                        <h:panelGrid columns="1" cellpadding="7">
+
+                                            <p:outputLabel  value=""></p:outputLabel>
+
+                                            <p:commandButton  type="submit" onclick="window.location.reload()"  value="volver"></p:commandButton>
+                                        </h:panelGrid>
+
+                                    </h:form>
+                                </p:dialog>
+
+                            </p:panel>
+                        </div>
+                    </p:panel>
+                </div>  
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

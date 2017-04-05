@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>ALSERPAL</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link href="resources/css/styles.css" rel="stylesheet" type="text/css"/>
+        <h:outputScript library="js" name="global.js"/>
+    </h:head>
+    <h:body >
+        <div class="section" id="page"> 
+            <div class="header">
+                <img src="resources/img/logo sin fondo.png" alt="" width="80px" height="80px"/>
+                <h3>Alserpal Enterprise</h3>
+                <div class="nav clear">
+                    <ul>
+                        <li><a value="Effects"  href="#article1" onclick="PF('dlg3').show();">Login</a></li>
+                        <li>
+                            <p:commandLink value="Registro" action="#{ClienteManagedBean.redireccionRegistro()}"/>
+
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <!-- Formulario Login -->
+            <p:dialog header="Login" widgetVar="dlg3" showEffect="explode" hideEffect="bounce"  closeOnEscape="true" >
+                <h:form id="form">
+                    <p:messages id="mensaje" autoUpdate="true" />
+                    <p:fieldset legend="Login">
+                        <h:panelGrid columns="1" cellpadding="7">
+                            <p:outputLabel  value="Usuario"></p:outputLabel>
+                            <p:inputText  maxlength="20" value="#{ClienteManagedBean.currentClienteLogin.user}"></p:inputText>
+                            <p:outputLabel  value="Password"></p:outputLabel>
+                            <p:password  maxlength="20" value="#{ClienteManagedBean.currentClienteLogin.pass}"   promptLabel="Ingrese una clave"></p:password>
+                            <p:commandButton icon="ui-icon-key" type="submit" action="#{ClienteManagedBean.autenticar()}" value="Ingresar"></p:commandButton>
+                        </h:panelGrid>
+                    </p:fieldset>
+                </h:form>
+            </p:dialog>
+            <div class="section" id="articles">
+                <div class="line"></div> 
+                <div class="article" id="article1">
+                    <h2>Alserpal enterprise</h2>
+                    <div class="line"></div>
+                    <div class="articleBody clear">
+                        <div class="figure"> 
+                            <a> <img src="https://lh6.googleusercontent.com/dBI1p84aWK--Slt3xk07cSRq4Ffk4pBVdIbJc5_d1nLVSftDt80Wuf-9L9-OY6AMqwa0DtvPAEt0yH_N0M56o_prjKeN1-v_vZ23RTLYZoAGyOGP7kQa0HJfQme3IqXIqg" width="620" height="340" alt="Image one" /></a>
+                        </div>
+                        <p>Alserpal enterprise empresa pionera en la puesta a disposición de estacionamientos domiciliarios.</p>
+                        <p>Hemos visto una oportunidad, en la cual damos la posibilidad a personas normales de generar ingresos
+                            extras mientras ellos no se encuentren en su domicilio, dejando disponible el arriendo de su 
+                            estacionamiento para otros conductores que lo requieran, a una tarifa justa, tanto para la persona 
+                            que arrienda su estacionamiento como para aquel que requiera de uno. </p>
+                        <p>Atrevete a probar una nueva experiencia en estacionamientos!!!</p>
+                    </div>
+                </div>
+                <div class="line">
+
+                    <h:body   >
+                        <h:form id="form4" style="width:784px; margin: 0 auto; border: 1px solid #000000 ;  text-align: center; ">
+
+
+
+                                <script   src="http://maps.google.com/maps/api/js?key=AIzaSyBilIoHGvqkCYCFz6lCEyCWavLULxh6aWw"
+                                type="text/javascript"></script> 
+                                <p:gmap   id='gmap' center="-33.5050018,-70.60673209999999" zoom="11" type="HYBRID" style="width:763px;height:465px;  " model="#{arriendoManagedBean.simpleModel}" >
+    
+                                </p:gmap>
+
+
+                        </h:form>
+                    </h:body>
+
+                </div>
+            </div> 
+        </div> 
+    </h:body>
+</html>
+

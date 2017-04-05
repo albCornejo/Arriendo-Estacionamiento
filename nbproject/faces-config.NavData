@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="Vistas/Usuario/EditarUsuario.xhtml" x="-371" y="166" zoom="true"/>
+        <Node id="index.xhtml" x="-367" y="-265" zoom="false"/>
+        <Node id="*" x="103" y="249" zoom="true"/>
+        <Node id="Vistas/Master.xhtml" x="774" y="459" zoom="true"/>
+        <Node id="Vistas/IngresoTarjeta.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="Vistas/EstadoEstacionamiento.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="Vistas/Usuario/ListaUsuarioUnico.xhtml" x="791" y="954" zoom="true"/>
+        <Node id="Vistas/Usuario/ListarUsuarios.xhtml" x="-25" y="705" zoom="true"/>
+        <Node id="Vistas/EditarCliente.xhtml" x="400" y="300" zoom="false"/>
+        <Node id="Vistas/AgregaEstacionamiento.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="Vistas/agregaCliente.xhtml" x="337" y="-234" zoom="false"/>
+        <Node id="Vistas/cambiaTarjeta.xhtml" x="20" y="-363" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

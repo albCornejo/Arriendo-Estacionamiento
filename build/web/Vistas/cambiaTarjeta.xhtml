@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./Master.xhtml">
+
+            <ui:define name="content">
+
+                <h:body>
+                    <h:form id="form" style="width:60%; margin: 0 auto; ">
+
+                        <p:panel id="panel" header="Metodo Pago Actual" style="margin-bottom:10px; background-color: #EBF7F7;">
+                            <p:fieldset legend="Datos Tarjeta">
+                                <h:panelGrid columns="2" >
+
+                                    <p:outputLabel>Metodo De Pago:  </p:outputLabel>
+                                    <p:outputLabel value="#{ClienteManagedBean.currentCliente.metodoPago}"/>
+
+
+                                    <p:outputLabel>Numero Tarjeta:  </p:outputLabel>
+                                    <p:outputLabel value="#{ClienteManagedBean.currentCliente.tarj_num}"/>
+
+
+                                </h:panelGrid>
+<!--                                <p:separator />-->
+
+                                
+                             
+                                <p:spacer width="10"/>
+                            </p:fieldset>
+                            <p:commandButton  value="Cambiar Medio Pago" action="#{ClienteManagedBean.cambiaTarjeta()}" style="margin-top: 15px;" />
+                        </p:panel>
+                    </h:form>
+                </h:body>
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

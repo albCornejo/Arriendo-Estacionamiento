@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<!--   <h:outputScript name="script.js" library="js" target="body"/>-->
+
+    <body>
+        
+
+
+
+        <ui:composition template="./../Master.xhtml">
+        
+            <ui:define name="content">
+                
+
+                
+                   <h:form id="formedit" >
+                        <p:panel id="panel" header="Editar Usuario" style="margin-bottom:10px;">
+                        <p:messages id="messages" />
+                        <h:panelGrid columns="2" cellpadding="5" >
+
+                                    <p:outputLabel value="Id.Usuario"></p:outputLabel>
+                                    <p:inputText value="#{ClienteManagedBean.currentCliente2.cliente_id}" disabled="true"></p:inputText>
+
+                                    <p:outputLabel  value="Email"></p:outputLabel>
+                                   <p:inputText id="ema" disabled="true" value="#{ClienteManagedBean.currentCliente2.email}"></p:inputText>
+
+
+                                    <p:outputLabel  value="Primer Nombre"></p:outputLabel>
+                                    <p:inputText id="pn" disabled="true" value="#{ClienteManagedBean.currentCliente2.p_nombre}"></p:inputText>
+
+                                    <p:outputLabel  value="Segundo Nombre"></p:outputLabel>
+                                    <p:inputText id="sn" disabled="true" value="#{ClienteManagedBean.currentCliente2.s_nombre}"></p:inputText>
+
+                                    <p:outputLabel  value="Apellido Paterno"></p:outputLabel>
+                                    <p:inputText id="ap" disabled="true" value="#{ClienteManagedBean.currentCliente2.p_apellido}"></p:inputText>
+
+                                    <p:outputLabel  value="Apellido Materno"></p:outputLabel>
+                                    <p:inputText id="am" disabled="true" value="#{ClienteManagedBean.currentCliente2.s_apellido}"></p:inputText>
+
+                                    <p:outputLabel  value="Sexo"></p:outputLabel>
+                                    <p:inputText id="sex" disabled="true" value="#{ClienteManagedBean.currentCliente2.sexo}"></p:inputText>
+
+                                    <p:outputLabel  value="Telefono"></p:outputLabel>
+                                    <p:inputText id="tel" disabled="true" value="#{ClienteManagedBean.currentCliente2.telefono}"></p:inputText>
+
+                                    <p:outputLabel  value="Usuario"></p:outputLabel>
+                                    <p:inputText disabled="true" value="#{ClienteManagedBean.currentCliente2.user}"></p:inputText>
+
+                                   <p:outputLabel  value="Password"></p:outputLabel>
+                                    <p:inputText id="passwd" disabled="true" value="#{ClienteManagedBean.currentCliente2.pass}"></p:inputText>
+                            
+
+                            <p:commandButton onclick="activar()" value="Modificar" action="results"></p:commandButton>
+                           
+                            <p:commandButton onclick="#{ClienteManagedBean.guardarModificar()}" value="Guardar"></p:commandButton>
+
+                        </h:panelGrid>
+                    </p:panel>
+        </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

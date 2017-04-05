@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="../resources/css/cssLayout.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/default.css" rel="stylesheet" type="text/css"/>
+
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <link href="resources/css/styles.css" rel="stylesheet" type="text/css"/>
+
+        <link href="../resources/css/fondoMaster.css" rel="stylesheet" type="text/css"/>
+
+<!--        <style>
+            .css-input{ border-color:#cccccc; padding:10px; font-size:19px; text-align:center; border-style:hidden; border-radius:14px; border-width:3px; box-shadow: 0px 0px 5px 0px rgba(50,23,255,.75); text-shadow:0px 0px 1px rgba(42,42,42,.75);  } 
+            .css-input:focus { outline:none; }
+        </style>-->
+
+        <title>Amest Estacionamientos</title>
+
+        <script  type="text/javascript"  >
+            function activar() {
+                //var actividad = "false";
+                document.getElementById('formedit:ema').disabled = false;
+                document.getElementById('formedit:pn').disabled = false;
+                document.getElementById('formedit:sn').disabled = false;
+                document.getElementById('formedit:ap').disabled = false;
+                document.getElementById('formedit:am').disabled = false;
+                document.getElementById('formedit:sex').disabled = false;
+                document.getElementById('formedit:tel').disabled = false;
+                document.getElementById('formedit:passwd').disabled = false;
+                //act.disabled = actividad;
+
+                //document.getElementById().disa
+                //alert("Activaste la funcion miFuncion()");
+
+            }
+        </script>
+
+    </h:head>
+
+    <h:body style="background-image: url(../resources/img/banner.jpg)">
+        <div id="top" class="top">
+            <ui:insert name="top">
+
+
+                <h:form>  
+                    <p:growl id="messages"/>
+
+                    <p:menubar>
+                        <p:menuitem value="Inicio"  icon="ui-icon-home" outcome="cancelar" />
+
+                        <p:submenu label="Mi Perfil" icon="ui-icon-person">
+                            <p:menuitem value="Editar Perfil"  icon="ui-icon-pencil" action="#{ClienteManagedBean.traeCliMod()}" />
+                            <p:menuitem value="Mi Estacionamiento"  icon="tag" action="#{direccionManagedBean.redireccionEst()}" />
+                            <p:menuitem value="Cambio Medio Pago"  icon="ui-icon-transferthick-e-w" action="#{ClienteManagedBean.listarDatosTarjeta()}"/>
+
+                        </p:submenu>
+
+                        <p:menuitem value="Estacionamientos Disponibles "  icon="ui-icon-search" outcome="BuscarEstacionamiento" />
+
+                        <f:facet name="options">
+                            <p:outputLabel style="margin-right:20px; color:#000000;  font-family: comic sans, cursive ; font-size: 15px;" class ="navbar-brand" value="Bienvenido: #{ClienteManagedBean.ObtenerUsuario()}" ></p:outputLabel>
+
+
+                            <p:commandLink id="ajax" action="#{ClienteManagedBean.cerrarSession()}" style="color:#0000FF;">                  
+                                <h:outputText value="Cerrar Sesión" />
+                            </p:commandLink>
+
+
+
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+
+
+
+            </ui:insert>
+        </div>
+
+        <div id="content1" >
+            <!--            class="center_content"-->
+            <ui:insert name="content"  >
+
+                <h:body   >
+                    <h:form id="form" style="width:70%; margin: 0 auto;  text-align: center; ">
+                        <p:fieldset style=" background-color: #68B0AB; ">
+
+                                <p:outputLabel value=" Estacionamientos Disponibles actualmente" style="font-size: 30px; color: #FFFFFF; font-family:serif; font-weight:900;   "/>
+
+                                <script   src="http://maps.google.com/maps/api/js?key=AIzaSyBilIoHGvqkCYCFz6lCEyCWavLULxh6aWw"
+                                type="text/javascript"></script> 
+                                <p:gmap   id='gmap' center="-33.5050018,-70.60673209999999" zoom="10" type="ROADMAP" style="width:100%;height:520px;  " model="#{arriendoManagedBean.simpleModel}" >
+
+                                </p:gmap>
+
+                        </p:fieldset>
+                    </h:form>
+                </h:body>
+
+            </ui:insert>
+        </div>
+
+
+    </h:body>
+
+</html>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Master.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="form">
+                    <p:panel id="panel" header="Nuevo Medio de Pago" style="width:60%; margin: 0 auto;background-color: #EBF7F7;">
+                        <p:fieldset legend="Datos Tarjeta">
+                            <h:panelGrid columns="3" cellpadding="7">
+
+                                <p:outputLabel for="metodoPago" value="Metodo Pago"></p:outputLabel>
+                                <p:selectOneRadio id="metodoPago" value="#{ClienteManagedBean.currentCliente.metodoPago}" required="true">
+                                    <f:selectItem  itemValue="1" itemLabel="Visa" />
+                                    <f:selectItem  itemValue="2" itemLabel="Master-Card" />
+                                </p:selectOneRadio>
+                                <p:message for="metodoPago" />
+
+                                <p:outputLabel for="numTarjeta" value="Numero Tarjeta" />
+                                <p:inputText id="numTarjeta" maxlength="30" value="#{ClienteManagedBean.currentCliente.tarj_num}" required="true"
+                                             validatorMessage="Numero tarjeta Invalido" onkeydown="return onlynumWithoutPoint(event)">
+                                    <f:validateLength minimum="4"/>
+                                </p:inputText>
+                                <p:message for="numTarjeta" />
+
+                                <p:outputLabel  value="Fecha Expiracion Tarjeta" />
+                                <p:selectOneMenu value="#{ClienteManagedBean.mes}">
+                                    <f:selectItem itemValue="01" itemLabel="Enero"/>
+                                    <f:selectItem itemValue="02" itemLabel="Febrero"/>
+                                    <f:selectItem itemValue="03" itemLabel="Marzo"/>
+                                    <f:selectItem itemValue="04" itemLabel="Abril"/>
+                                    <f:selectItem itemValue="05" itemLabel="Mayo"/>
+                                    <f:selectItem itemValue="06" itemLabel="Junio"/>
+                                    <f:selectItem itemValue="07" itemLabel="Julio"/>
+                                    <f:selectItem itemValue="08" itemLabel="Agosto"/>
+                                    <f:selectItem itemValue="09" itemLabel="Septiembre"/>
+                                    <f:selectItem itemValue="10" itemLabel="Octubre"/>
+                                    <f:selectItem itemValue="11" itemLabel="Noviembre"/>
+                                    <f:selectItem itemValue="12" itemLabel="Diciembre"/>
+                                </p:selectOneMenu>
+
+                                <p:selectOneMenu value="#{ClienteManagedBean.anio}">
+                                    <f:selectItem itemValue="2019" itemLabel="2019"/>
+                                    <f:selectItem itemValue="2021" itemLabel="2021"/>
+                                    <f:selectItem itemValue="2022" itemLabel="2022"/>
+                                    <f:selectItem itemValue="2023" itemLabel="2023"/>
+                                    <f:selectItem itemValue="2024" itemLabel="2024"/>
+                                    <f:selectItem itemValue="2025" itemLabel="2025"/>
+                                    <f:selectItem itemValue="2026" itemLabel="2026"/>
+                                    <f:selectItem itemValue="2027" itemLabel="2027"/>
+
+                                </p:selectOneMenu>
+
+                                <p:outputLabel for="numSegTarjeta" value="Numero Seguridad Tarjeta" />
+                                <p:inputText id="numSegTarjeta" maxlength="10" value="#{ClienteManagedBean.currentCliente.tarj_num_seg}" required="true"
+                                             validatorMessage="Numero seguridad tarjeta Invalido" onkeydown="return onlynumWithoutPoint(event)">
+                                    <f:validateLength minimum="3"/>
+                                </p:inputText>
+                                <p:message for="numSegTarjeta" />
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <p:commandButton  value="Cambiar Medio Pago" style="margin-top: 15px;" action="#{ClienteManagedBean.cambiaTarjeta1()}" ></p:commandButton>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
